@@ -54,7 +54,7 @@ The tool will:
 
 ```bash
 # First, configure your Transmission settings
-torrent-cli config --host 192.168.1.32 --port 9091 --username myuser --password mypass
+torrent-cli config --host 192.168.100.38 --port 9091 --username myuser --password mypass
 
 # Then search for torrents
 torrent-cli "ubuntu iso"
