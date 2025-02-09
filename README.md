@@ -4,8 +4,9 @@ A command-line interface for searching and downloading torrents using Transmissi
 
 ## Installation
 
+You can install directly from GitHub using pip:
 ```bash
-pip install torrent-cli
+pip install git+https://github.com/tkalejaiye/torrent-cli.git
 ```
 
 ## Configuration
