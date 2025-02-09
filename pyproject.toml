@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torrent-cli"
+version = "0.1.0"
+authors = [
+    { name = "Tolu", email = "tokalejaiye@gmail.com" }
+]
+description = "A CLI tool for searching and downloading torrents using Transmission"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.31.0",
+    "transmission-rpc>=7.0.11",
+    "click>=8.1.7",
+    "inquirer>=3.2.0",
+]
+
+[project.scripts]
+torrent-cli = "torrent_cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/tkalejaiye/torrent-cli"
+"Bug Tracker" = "https://github.com/tkalejaiye/torrent-cli/issues"
