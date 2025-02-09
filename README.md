@@ -35,7 +35,7 @@ The configuration is stored in `~/.config/torrent-cli/config.json` and will be u
 Once you've configured your Transmission connection settings, you can start searching and downloading torrents:
 
 ```bash
-torrent-cli "your search query"
+torrent-cli search "your search query"
 ```
 
 The tool will:
@@ -57,7 +57,7 @@ The tool will:
 torrent-cli config --host 192.168.100.38 --port 9091 --username myuser --password mypass
 
 # Then search for torrents
-torrent-cli "ubuntu iso"
+torrent-cli search "ubuntu iso"
 ```
 
 ## Troubleshooting
