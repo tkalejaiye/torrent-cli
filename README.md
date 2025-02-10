@@ -32,7 +32,9 @@ The configuration is stored in `~/.config/torrent-cli/config.json` and will be u
 
 ## Usage
 
-Once you've configured your Transmission connection settings, you can start searching and downloading torrents:
+Once you've configured your Transmission connection settings, you can use the following commands:
+
+### Search and Download
 
 ```bash
 torrent-cli search "your search query"
@@ -43,6 +45,19 @@ The tool will:
 2. Display an interactive list of results with size, seeders, and leechers
 3. Let you select which torrent to download using arrow keys
 4. Add the selected torrent to your Transmission download queue
+
+### View Download Queue
+
+To view all torrents in your Transmission queue along with their status:
+
+```bash
+torrent-cli queue
+```
+
+This will show:
+- Name and status of each torrent
+- Progress bar and download speed for actively downloading torrents
+- Total size of each torrent
 
 ### Requirements
 
