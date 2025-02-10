@@ -96,6 +96,12 @@ def start_download(torrent):
     client.add_torrent(magnet)
     click.echo("Successfully added torrent to download queue!")
 
+def format_progress_bar(progress, width=30):
+    """Create a progress bar string."""
+    filled = int(width * progress)
+    bar = "█" * filled + "-" * (width - filled)
+    return f"[{bar}] {progress*100:.1f}%"
+
 @click.group()
 def cli():
     """Torrent CLI - Search and download torrents using Transmission."""
@@ -145,6 +151,48 @@ def config(host, port, username, password):
         json.dump(config, f, indent=4)
     
     click.echo("Configuration updated successfully!")
+
+@cli.command()
+def queue():
+    """View all torrents in the Transmission queue with their status."""
+    config = get_config()
+    
+    try:
+        client = Client(
+            host=config["host"],
+            port=config["port"],
+            username=config["username"],
+            password=config["password"]
+        )
+        
+        torrents = client.get_torrents()
+        
+        if not torrents:
+            click.echo("No torrents in queue!")
+            return
+            
+        for torrent in torrents:
+            status = torrent.status
+            name = torrent.name
+            
+            # Display basic info
+            click.echo(f"\n{name}")
+            click.echo(f"Status: {status}")
+            
+            # Show progress for downloading torrents
+            if status == "downloading":
+                progress = torrent.progress / 100.0
+                speed = format_size(torrent.rate_download) + "/s"
+                progress_bar = format_progress_bar(progress)
+                click.echo(f"Progress: {progress_bar}")
+                click.echo(f"Download Speed: {speed}")
+            
+            # Show other relevant information
+            size = format_size(torrent.total_size)
+            click.echo(f"Size: {size}")
+            
+    except Exception as e:
+        click.echo(f"Error connecting to Transmission: {str(e)}")
 
 main = cli
 
